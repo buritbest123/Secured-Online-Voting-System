@@ -2,6 +2,7 @@ import tkinter as tk
 import socket
 from tkinter import *
 from VotingPage import votingPg
+import hashlib
 
 def establish_connection():
     host = socket.gethostname()
@@ -24,27 +25,30 @@ def failed_return(root,frame1,client_socket,message):
     client_socket.close()
 
 def log_server(root,frame1,client_socket,voter_ID,password):
-    message = voter_ID + " " + password
-    client_socket.send(message.encode()) #2
-
-    message = client_socket.recv(1024) #Authenticatication message
-    message = message.decode()
-
-    if(message=="Authenticate"):
+    # Hash the password entered by the user
+    hashed_password = hash_password(password)
+    
+    # Construct message to send to the server (voter_ID and hashed_password)
+    message = f"{voter_ID} {hashed_password}"
+    
+    # Send message to the server
+    client_socket.send(message.encode())
+    
+    # Receive authentication response from the server
+    authentication_response = client_socket.recv(1024).decode()
+    
+    # Determine how to proceed based on the authentication response
+    if authentication_response == "Authenticate":
         votingPg(root, frame1, client_socket)
-
-    elif(message=="VoteCasted"):
+    elif authentication_response == "VoteCasted":
         message = "Vote has Already been Cast"
         failed_return(root,frame1,client_socket,message)
-
-    elif(message=="InvalidVoter"):
+    elif authentication_response == "InvalidVoter":
         message = "Invalid Voter"
         failed_return(root,frame1,client_socket,message)
-
     else:
         message = "Server Error"
         failed_return(root,frame1,client_socket,message)
-
 
 
 def voterLogin(root,frame1):
@@ -66,6 +70,7 @@ def voterLogin(root,frame1):
     voter_ID = tk.StringVar()
     name = tk.StringVar()
     password = tk.StringVar()
+    
 
     e1 = Entry(frame1, textvariable = voter_ID)
     e1.grid(row = 2,column = 2)
@@ -78,6 +83,13 @@ def voterLogin(root,frame1):
 
     frame1.pack()
     root.mainloop()
+
+def hash_password(password):
+    # Encode password as bytes before hashing
+    password_bytes = password.encode('utf-8')
+    # Use SHA-256 hash function
+    hashed_password = hashlib.sha256(password_bytes).hexdigest()
+    return hashed_password
 
 
 # if __name__ == "__main__":

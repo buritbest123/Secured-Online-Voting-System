@@ -1,5 +1,6 @@
 import pandas as pd
 from pathlib import Path
+import hashlib
 
 # path = Path("C:/Users/Desktop/Sem-5/CS301 CN/Project/Voting/database")
 path = Path("database")
@@ -78,32 +79,77 @@ def show_result():
     # print(v_cnt)
     return v_cnt
 
+# Hash function using sha256
+def hash_password(password):
+    # Encode password as bytes before hashing
+    password_bytes = password.encode('utf-8')
+    # Use SHA-256 hash function
+    hashed_password = hashlib.sha256(password_bytes).hexdigest()
+    return hashed_password
 
-def taking_data_voter(name,gender,zone,city,passw):
-    df=pd.read_csv(path/'voterList.csv')
-    df=df[['voter_id','Name','Gender','Zone','City','Passw','hasVoted']]
-    row,col=df.shape
-    if row==0:
+def taking_data_voter(name, gender, zone, city, passw):
+    df = pd.read_csv(path / 'voterList.csv')
+    df = df[['voter_id', 'Name', 'Gender', 'Zone', 'City', 'Passw', 'hasVoted']]
+    row, col = df.shape
+    
+    if row == 0:
         vid = 10001
-        df = pd.DataFrame({"voter_id":[vid],
-                    "Name":[name],
-                    "Gender":[gender],
-                    "Zone":[zone],
-                    "City":[city],
-                    "Passw":[passw],
-                    "hasVoted":[0]},)
+        hashed_passw = hash_password(passw)
+        df = pd.DataFrame({
+            "voter_id": [vid],
+            "Name": [name],
+            "Gender": [gender],
+            "Zone": [zone],
+            "City": [city],
+            "Passw": [hashed_passw],  # Storing hashed password
+            "hasVoted": [0],
+        })
     else:
-        vid=df['voter_id'].iloc[-1]+1
-        df1 = pd.DataFrame({"voter_id":[vid],
-                    "Name":[name],
-                    "Gender":[gender],
-                    "Zone":[zone],
-                    "City":[city],
-                    "Passw":[passw],
-                    "hasVoted":[0]},)
+        vid = df['voter_id'].iloc[-1] + 1
+        hashed_passw = hash_password(passw)
+        df1 = pd.DataFrame({
+            "voter_id": [vid],
+            "Name": [name],
+            "Gender": [gender],
+            "Zone": [zone],
+            "City": [city],
+            "Passw": [hashed_passw],  # Storing hashed password
+            "hasVoted": [0],
+        })
 
-        df = pd.concat([df, df1],ignore_index=True)
+        df = pd.concat([df, df1], ignore_index=True)
 
-    df.to_csv(path/'voterList.csv')
+    df.to_csv(path / 'voterList.csv')
 
     return vid
+
+
+
+# def taking_data_voter(name,gender,zone,city,passw):
+#     df=pd.read_csv(path/'voterList.csv')
+#     df=df[['voter_id','Name','Gender','Zone','City','Passw','hasVoted']]
+#     row,col=df.shape
+#     if row==0:
+#         vid = 10001
+#         df = pd.DataFrame({"voter_id":[vid],
+#                     "Name":[name],
+#                     "Gender":[gender],
+#                     "Zone":[zone],
+#                     "City":[city],
+#                     "Passw":[passw],
+#                     "hasVoted":[0]},)
+#     else:
+#         vid=df['voter_id'].iloc[-1]+1
+#         df1 = pd.DataFrame({"voter_id":[vid],
+#                     "Name":[name],
+#                     "Gender":[gender],
+#                     "Zone":[zone],
+#                     "City":[city],
+#                     "Passw":[passw],
+#                     "hasVoted":[0]},)
+
+#         df = pd.concat([df, df1],ignore_index=True)
+
+#     df.to_csv(path/'voterList.csv')
+
+#     return vid
