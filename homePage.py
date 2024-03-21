@@ -9,6 +9,8 @@ bgColor = "#FFE6E6"
 fontColor = "#7469B6"
 highlightColor = "#77cbb9"  # Highlight color for hover effect
 
+# Code Color: https://colorhunt.co/palette/ffe6e6e1afd1ad88c67469b6
+
 def Home(root, frame1, frame2):
     custom_font = font.Font(family="Lato", size=12, weight="bold")
 
