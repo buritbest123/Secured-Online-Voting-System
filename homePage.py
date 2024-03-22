@@ -2,6 +2,8 @@
 import subprocess as sb_p
 import tkinter as tk
 from tkinter import font
+from Admin import AdmLogin
+from voter import voterLogin
 
 # Modern color scheme and fonts
 buttonColor = "#E1AFD1"
@@ -19,7 +21,7 @@ def Home(root, frame1, frame2):
             widget.destroy()
 
     # Improved button style with hover effect
-    home_btn = tk.Button(frame2, text="Home", fg=fontColor, bg=buttonColor, font=custom_font)
+    home_btn = tk.Button(frame2, text="Home", command = lambda: Home(root, frame1, frame2), fg=fontColor, bg=buttonColor, font=custom_font)
     home_btn.grid(row=0, column=0)
     home_btn.bind("<Enter>", lambda e: home_btn.config(bg=highlightColor))
     home_btn.bind("<Leave>", lambda e: home_btn.config(bg=buttonColor))
