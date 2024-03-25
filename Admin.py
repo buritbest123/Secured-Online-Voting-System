@@ -6,6 +6,9 @@ from tkinter import *
 from registerVoter import *
 from admFunc import *
 
+bgColor = "#FFE6E6"
+fontColor = "#7469B6"
+buttonColor = "#E1AFD1"
 
 def AdminHome(root,frame1,frame3):
     root.title("Admin")
@@ -49,7 +52,7 @@ def log_admin(root,frame1,admin_ID,password):
         frame3 = root.winfo_children()[1]
         AdminHome(root, frame1, frame3)
     else:
-        msg = Message(frame1, text="Either ID or Password is Incorrect", width=500)
+        msg = Message(frame1, text="Either ID or Password is Incorrect", width=500, fg=fontColor, bg=bgColor)
         msg.grid(row = 6, column = 0, columnspan = 5)
 
 
@@ -59,10 +62,10 @@ def AdmLogin(root,frame1):
     for widget in frame1.winfo_children():
         widget.destroy()
 
-    Label(frame1, text="Admin Login", font=('Helvetica', 18, 'bold')).grid(row = 0, column = 2, rowspan=1)
-    Label(frame1, text="").grid(row = 1,column = 0)
-    Label(frame1, text="Admin ID:      ", anchor="e", justify=LEFT).grid(row = 2,column = 0)
-    Label(frame1, text="Password:       ", anchor="e", justify=LEFT).grid(row = 3,column = 0)
+    Label(frame1, text="Admin Login", font=('Helvetica', 18, 'bold'), fg=fontColor, bg=bgColor).grid(row = 0, column = 2, rowspan=1)
+    Label(frame1, text="", fg=fontColor, bg=bgColor).grid(row = 1,column = 0)
+    Label(frame1, text="Admin ID:      ", fg=fontColor, bg=bgColor, anchor="e", justify=LEFT).grid(row = 2,column = 0)
+    Label(frame1, text="Password:       ", fg=fontColor, bg=bgColor, anchor="e", justify=LEFT).grid(row = 3,column = 0)
 
     admin_ID = tk.StringVar()
     password = tk.StringVar()
@@ -72,8 +75,8 @@ def AdmLogin(root,frame1):
     e2 = Entry(frame1, textvariable = password, show = '*')
     e2.grid(row = 3,column = 2)
 
-    sub = Button(frame1, text="Login", width=10, command = lambda: log_admin(root, frame1, admin_ID.get(), password.get()))
-    Label(frame1, text="").grid(row = 4,column = 0)
+    sub = Button(frame1, text="Login", width=10, bg=buttonColor, fg=fontColor, command = lambda: log_admin(root, frame1, admin_ID.get(), password.get()))
+    Label(frame1, text="", fg=fontColor, bg=bgColor).grid(row = 4,column = 0)
     sub.grid(row = 5, column = 3, columnspan = 2)
 
     frame1.pack()
