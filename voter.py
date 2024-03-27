@@ -4,6 +4,10 @@ from tkinter import *
 from VotingPage import votingPg
 import hashlib
 
+bgColor = "#FFE6E6"
+fontColor = "#7469B6"
+buttonColor = "#E1AFD1"
+
 def establish_connection():
     host = socket.gethostname()
     port = 4001
@@ -21,7 +25,7 @@ def failed_return(root,frame1,client_socket,message):
     for widget in frame1.winfo_children():
         widget.destroy()
     message = message + "... \nTry again..."
-    Label(frame1, text=message, font=('Helvetica', 12, 'bold')).grid(row = 1, column = 1)
+    Label(frame1, text=message, font=('Helvetica', 12, 'bold'), fg=fontColor, bg=bgColor).grid(row = 1, column = 1)
     client_socket.close()
 
 def log_server(root,frame1,client_socket,voter_ID,password):
@@ -62,10 +66,10 @@ def voterLogin(root,frame1):
     for widget in frame1.winfo_children():
         widget.destroy()
 
-    Label(frame1, text="Voter Login", font=('Helvetica', 18, 'bold')).grid(row = 0, column = 2, rowspan=1)
-    Label(frame1, text="").grid(row = 1,column = 0)
-    Label(frame1, text="Voter ID:      ", anchor="e", justify=LEFT).grid(row = 2,column = 0)
-    Label(frame1, text="Password:   ", anchor="e", justify=LEFT).grid(row = 3,column = 0)
+    Label(frame1, text="Voter Login", font=('Helvetica', 18, 'bold'), fg=fontColor, bg=bgColor).grid(row = 0, column = 2, rowspan=1)
+    Label(frame1, text="", fg=fontColor, bg=bgColor).grid(row = 1,column = 0)
+    Label(frame1, text="Voter ID:      ", fg=fontColor, bg=bgColor, anchor="e", justify=LEFT).grid(row = 2,column = 0)
+    Label(frame1, text="Password:   ", fg=fontColor, bg=bgColor, anchor="e", justify=LEFT).grid(row = 3,column = 0)
 
     voter_ID = tk.StringVar()
     name = tk.StringVar()
@@ -77,7 +81,7 @@ def voterLogin(root,frame1):
     e3 = Entry(frame1, textvariable = password, show = '*')
     e3.grid(row = 3,column = 2)
 
-    sub = Button(frame1, text="Login", width=10, command = lambda: log_server(root, frame1, client_socket, voter_ID.get(), password.get()))
+    sub = Button(frame1, text="Login", width=10, bg=buttonColor, fg=fontColor, command = lambda: log_server(root, frame1, client_socket, voter_ID.get(), password.get()))
     Label(frame1, text="").grid(row = 4,column = 0)
     sub.grid(row = 5, column = 3, columnspan = 2)
 
