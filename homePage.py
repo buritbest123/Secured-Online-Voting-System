@@ -2,6 +2,7 @@
 import subprocess as sb_p
 import tkinter as tk
 from tkinter import font
+from PIL import ImageTk, Image
 from Admin import AdmLogin
 from voter import voterLogin
 
@@ -31,6 +32,15 @@ def Home(root, frame1, frame2):
 
     root.title("Home")
     root.configure(bg=bgColor)
+
+    # Logo
+    original_image = Image.open('img\Logo.png')
+    resized_image = original_image.resize((150, 150), Image.LANCZOS)  # Resize to 300x200 or your desired size
+    image = ImageTk.PhotoImage(resized_image)
+
+    # Create a label to display the image
+    image_label = tk.Label(root, image=image, bg=bgColor)
+    image_label.pack(padx=0, pady=0)
 
     tk.Label(frame1, text="Home", font=('Lato', 25, 'bold'), fg=fontColor, bg=bgColor).grid(row=0, column=1)
 
