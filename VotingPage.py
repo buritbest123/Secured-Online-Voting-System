@@ -37,25 +37,25 @@ def votingPg(root,frame1,client_socket):
 
     vote = StringVar(frame1,"-1")
 
-    Radiobutton(frame1, text = "BJP\nNarendra Modi", fg=fontColor, bg=buttonColor, variable = vote, value = "bjp", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"bjp",client_socket)).grid(row = 2,column = 1)
-    bjpLogo = ImageTk.PhotoImage((Image.open("img/bjp.png")).resize((45,45),Image.LANCZOS))
-    bjpImg = Label(frame1, image=bjpLogo, bg=bgColor).grid(row = 2,column = 0)
+    Radiobutton(frame1, text = "EarthPony\nMeadowbrook", fg=fontColor, bg=buttonColor, variable = vote, value = "EarthPony", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"EarthPony",client_socket)).grid(row = 2,column = 1)
+    electionCandidate1 = ImageTk.PhotoImage((Image.open("img/EarthPony.png")).resize((45,45),Image.LANCZOS))
+    EarthPonyImg = Label(frame1, image=electionCandidate1, bg=bgColor).grid(row = 2,column = 0)
 
-    Radiobutton(frame1, text = "Congress\nRahul Gandhi", fg=fontColor, bg=buttonColor, variable = vote, value = "cong", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"cong",client_socket)).grid(row = 3,column = 1)
-    congLogo = ImageTk.PhotoImage((Image.open("img/cong.jpg")).resize((35,48),Image.LANCZOS))
-    congImg = Label(frame1, image=congLogo, bg=bgColor).grid(row = 3,column = 0)
+    Radiobutton(frame1, text = "Pegasus\nSkydancer", fg=fontColor, bg=buttonColor, variable = vote, value = "Pegasus", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"Pegasus",client_socket)).grid(row = 3,column = 1)
+    electionCandidate2 = ImageTk.PhotoImage((Image.open("img/Pegasus.png")).resize((35,48),Image.LANCZOS))
+    PegasusImg = Label(frame1, image=electionCandidate2, bg=bgColor).grid(row = 3,column = 0)
 
-    Radiobutton(frame1, text = "Aam Aadmi Party\nArvind Kejriwal", fg=fontColor, bg=buttonColor, variable = vote, value = "aap", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"aap",client_socket) ).grid(row = 4,column = 1)
-    aapLogo = ImageTk.PhotoImage((Image.open("img/aap.png")).resize((55,40),Image.LANCZOS))
-    aapImg = Label(frame1, image=aapLogo, bg=bgColor).grid(row = 4,column = 0)
+    Radiobutton(frame1, text = "Unicorn\nStarwhisper", fg=fontColor, bg=buttonColor, variable = vote, value = "Unicorn", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"Unicorn",client_socket) ).grid(row = 4,column = 1)
+    electionCandidate3 = ImageTk.PhotoImage((Image.open("img/Unicorn.png")).resize((55,40),Image.LANCZOS))
+    UnicornImg = Label(frame1, image=electionCandidate3, bg=bgColor).grid(row = 4,column = 0)
 
-    Radiobutton(frame1, text = "Shiv Sena\nUdhav Thakrey", fg=fontColor, bg=buttonColor, variable = vote, value = "ss", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"ss",client_socket)).grid(row = 5,column = 1)
-    ssLogo = ImageTk.PhotoImage((Image.open("img/ss.png")).resize((50,45),Image.LANCZOS))
-    ssImg = Label(frame1, image=ssLogo, bg=bgColor).grid(row = 5,column = 0)
+    Radiobutton(frame1, text = "Alicorn\nCelestiaDream", fg=fontColor, bg=buttonColor, variable = vote, value = "Alicorn", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"Alicorn",client_socket)).grid(row = 5,column = 1)
+    electionCandidate4 = ImageTk.PhotoImage((Image.open("img/Alicorn.png")).resize((50,45),Image.LANCZOS))
+    AlicornImg = Label(frame1, image=electionCandidate4, bg=bgColor).grid(row = 5,column = 0)
 
-    Radiobutton(frame1, text = "\nNOTA    \n  ", fg=fontColor, bg=buttonColor, variable = vote, value = "nota", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"nota",client_socket)).grid(row = 6,column = 1)
-    notaLogo = ImageTk.PhotoImage((Image.open("img/nota.jpg")).resize((45,35),Image.LANCZOS))
-    notaImg = Label(frame1, image=notaLogo, bg=bgColor).grid(row = 6,column = 0)
+    # Radiobutton(frame1, text = "\nNOTA    \n  ", fg=fontColor, bg=buttonColor, variable = vote, value = "nota", indicator = 0, height = 4, width=15, command = lambda: voteCast(root,frame1,"nota",client_socket)).grid(row = 6,column = 1)
+    # electionCandidate5 = ImageTk.PhotoImage((Image.open("img/nota.jpg")).resize((45,35),Image.LANCZOS))
+    # notaImg = Label(frame1, image=electionCandidate5, bg=bgColor).grid(row = 6,column = 0)
 
     frame1.pack()
     root.mainloop()
