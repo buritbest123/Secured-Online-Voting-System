@@ -74,5 +74,6 @@ def new_home():
     frame2.configure(bg=bgColor)
     Home(root, frame1, frame2)
 
+
 if __name__ == "__main__":
     new_home()
