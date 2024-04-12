@@ -12,7 +12,7 @@ def encrypt_file(file_path, password):
     salt = os.urandom(16)
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
-        length=32,
+        length=32,      # 32 bytes = 256 bits
         salt=salt,
         iterations=100000,
         backend=default_backend()
