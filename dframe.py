@@ -83,10 +83,10 @@ def show_result():
     encrypt_file(path / 'cand_list.csv', encryption_key)
     return v_cnt
 
-# Hash function using sha256
+# Hash function using sha512 
 def hash_password(password):
     password_bytes = password.encode('utf-8')
-    hashed_password = hashlib.sha256(password_bytes).hexdigest()
+    hashed_password = hashlib.sha512(password_bytes).hexdigest()
     return hashed_password
 
 def taking_data_voter(name, gender, zone, city, passw):

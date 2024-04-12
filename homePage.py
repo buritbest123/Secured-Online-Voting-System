@@ -13,13 +13,19 @@ fontColor = "#7469B6"
 highlightColor = "#77cbb9"  # Highlight color for hover effect
 
 # Code Color: https://colorhunt.co/palette/ffe6e6e1afd1ad88c67469b6
+# Global variable to track if the logo is already displayed
+logo_displayed = False
+logo_image = None  # To store the PhotoImage object
 
 def Home(root, frame1, frame2):
+    global logo_displayed, logo_image
     custom_font = font.Font(family="Lato", size=12, weight="bold")
 
     for frame in root.winfo_children():
         for widget in frame.winfo_children():
             widget.destroy()
+            if not (widget is logo_image):
+                widget.destroy()
 
     # Improved button style with hover effect
     home_btn = tk.Button(frame2, text="Home", command = lambda: Home(root, frame1, frame2), fg=fontColor, bg=buttonColor, font=custom_font)
@@ -33,14 +39,16 @@ def Home(root, frame1, frame2):
     root.title("Home")
     root.configure(bg=bgColor)
 
-    # Logo
-    original_image = Image.open('img\Logo.png')
-    resized_image = original_image.resize((150, 150), Image.LANCZOS)  # Resize to 300x200 or your desired size
-    image = ImageTk.PhotoImage(resized_image)
+    if not logo_displayed:
+        # Logo
+        original_image = Image.open('img\Logo.png')
+        resized_image = original_image.resize((150, 150), Image.LANCZOS)  # Resize to 300x200 or your desired size
+        image = ImageTk.PhotoImage(resized_image)
 
-    # Create a label to display the image
-    image_label = tk.Label(root, image=image, bg=bgColor)
-    image_label.pack(padx=0, pady=0)
+        # Create a label to display the image
+        image_label = tk.Label(root, image=image, bg=bgColor)
+        image_label.pack(padx=0, pady=0)
+        logo_displayed = True
 
     tk.Label(frame1, text="Home", font=('Lato', 25, 'bold'), fg=fontColor, bg=bgColor).grid(row=0, column=1)
 

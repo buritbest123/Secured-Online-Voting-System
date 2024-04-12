@@ -92,7 +92,7 @@ def hash_password(password):
     # Encode password as bytes before hashing
     password_bytes = password.encode('utf-8')
     # Use SHA-256 hash function
-    hashed_password = hashlib.sha256(password_bytes).hexdigest()
+    hashed_password = hashlib.sha512(password_bytes).hexdigest()
     return hashed_password
 
 
