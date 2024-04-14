@@ -26,8 +26,6 @@ This project implements an e-Voting system designed to securely simulate an onli
    cd Online-Voting-System
    ```
 
-2. No external libraries are needed beyond the standard Python libraries included in the requirements.
-
 ## Running the Application
 1. Install the required cryptography package:
    ```bash
