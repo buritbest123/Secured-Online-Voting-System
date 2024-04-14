@@ -62,9 +62,3 @@ This project is released under the MIT License, which allows for extensive reusa
 ## Contact Information
 
 For further inquiries or issues, please contact us through our GitHub repository or email the project maintainers directly.
-
-For any inquiries, bugs, or contributions, please contact the project team at their institute email addresses provided in the project report.
-
----
-
-Please ensure to replace placeholders like `[repo-link]` with actual links and provide any additional necessary details that may not be included here. The structure and content are based on your system's described functionality and setup as provided in the report.
