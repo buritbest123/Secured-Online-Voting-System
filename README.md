@@ -1,6 +1,6 @@
 # Online Voting System
 
-This project, developed at the Indian Institute of Information Technology Vadodara, implements an e-Voting system designed to securely simulate an online voting environment. It incorporates robust features such as TCP socket programming, synchronized multithreading to handle multiple clients, and voter authentication to prevent repeated votes and ensure election integrity.
+This project implements an e-Voting system designed to securely simulate an online voting environment. It incorporates robust features such as TCP socket programming, synchronized multithreading to handle multiple clients, and voter authentication to prevent repeated votes and ensure election integrity.
 
 ## Features
 
@@ -29,14 +29,19 @@ This project, developed at the Indian Institute of Information Technology Vadoda
 2. No external libraries are needed beyond the standard Python libraries included in the requirements.
 
 ## Running the Application
-
-1. Open a terminal or command prompt.
-2. Navigate to the `Voting` folder within the project directory.
-3. Run the following command to start the application:
+1. Install the required cryptography package:
    ```bash
-   python homePage.py
+   pip install cryptography
    ```
-4. The home page window should open where you can log in as admin or voter based on the credentials provided in the 'How to Login' section.
+2. Change directory to the project file:
+   ```bash
+   cd path_to_project_directory
+   ```
+3. Run the application:
+   ```bash
+   python -u "path_to_homePage.py"
+   ```
+   Replace `path_to_project_directory` and `path_to_homePage.py` with the actual paths in your system.
 
 ## How to Login
 
@@ -48,15 +53,17 @@ This project, developed at the Indian Institute of Information Technology Vadoda
   - **Voter IDs:** 10001 to 10005
   - **Password:** abcd
 
-## Workflow
-
-Follow the detailed steps in the 'Workflow Description' section of the report to understand the sequence of operations from login to voting.
+## Additional Details
+- **Admin and Voter Login:** Information about admin setup and voter registration.
+- **Database Management:** Details on how the system uses CSV files to manage voter and candidate data.
 
 ## License
 
 This project is released under the MIT License, which allows for extensive reusability and modification. Please see the `LICENSE.md` file for legal details.
 
 ## Contact Information
+
+For further inquiries or issues, please contact us through our GitHub repository or email the project maintainers directly.
 
 For any inquiries, bugs, or contributions, please contact the project team at their institute email addresses provided in the project report.
 
