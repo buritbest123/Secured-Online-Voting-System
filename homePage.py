@@ -74,7 +74,7 @@ def Home(root, frame1, frame2):
 
 def new_home():
     root = tk.Tk()
-    root.geometry('500x500')
+    root.geometry('500x600')
 
     # Set the path to your custom icon file
     icon_path = "img/Icon.ico"

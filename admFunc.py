@@ -10,9 +10,9 @@ bgColor = "#FFE6E6"
 fontColor = "#7469B6"
 
 def resetAll(root,frame1):
-    #df.count_reset()
-    #df.reset_voter_list()
-    #df.reset_cand_list()
+    df.count_reset()
+    # df.reset_voter_list()
+    # df.reset_cand_list()
     Label(frame1, text="", fg=fontColor, bg=bgColor).grid(row = 10,column = 0)
     msg = Message(frame1, text="Reset Complete", fg=fontColor, bg=bgColor, width=500)
     msg.grid(row = 11, column = 0, columnspan = 5)

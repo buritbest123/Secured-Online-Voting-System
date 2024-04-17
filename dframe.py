@@ -28,7 +28,7 @@ def reset_voter_list():
 def reset_cand_list():
     decrypt_file(path / 'cand_list.csv', encryption_key)
     df = pd.DataFrame(columns=['Sign', 'Name', 'Vote Count'])
-    df.to_csv(path / 'cand_list')
+    df.to_csv(path / 'cand_list.csv')
     encrypt_file(path / 'cand_list.csv', encryption_key)
 
 def verify(vid, passw):

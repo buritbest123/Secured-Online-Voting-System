@@ -36,7 +36,7 @@ def AdminHome(root,frame1,frame3):
     showVotes = Button(frame1, text="Show Votes", fg=fontColor, bg=buttonColor, font=custom_font, width=15, command = lambda: adFunc.showVotes(root, frame1))
 
     #Reset Data
-    reset = Button(frame1, text="Reset All", fg=fontColor, bg=buttonColor, font=custom_font, width=15, command = lambda: adFunc.resetAll(root, frame1))
+    reset = Button(frame1, text="Reset Vote", fg=fontColor, bg=buttonColor, font=custom_font, width=15, command = lambda: adFunc.resetAll(root, frame1))
 
     Label(frame1, text="", fg=fontColor, bg=bgColor).grid(row = 2,column = 0)
     Label(frame1, text="", fg=fontColor, bg=bgColor).grid(row = 4,column = 0)
@@ -45,7 +45,7 @@ def AdminHome(root,frame1,frame3):
     runServer.grid(row = 3, column = 1, columnspan = 2)
     registerVoter.grid(row = 5, column = 1, columnspan = 2)
     showVotes.grid(row = 7, column = 1, columnspan = 2)
-    # reset.grid(row = 9, column = 1, columnspan = 2)
+    reset.grid(row = 9, column = 1, columnspan = 2)
 
     frame1.pack()
     root.mainloop()
