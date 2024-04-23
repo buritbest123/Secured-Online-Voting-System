@@ -10,6 +10,9 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 def encrypt_file(file_path, password):
     # Generate a key from the password using PBKDF2HMAC
     salt = os.urandom(16)
+    
+    # Password-Based Key Derivation Function 2 with HMAC (convert from user given password to a key)
+    # HMAC stands for Hash-based Message Authentication Code
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,      # 32 bytes = 256 bits
@@ -19,18 +22,21 @@ def encrypt_file(file_path, password):
     )
     key = kdf.derive(password.encode())
 
-    # Open the input file
+    # Open the input file (read plain text)
     with open(file_path, 'rb') as infile:
         plaintext = infile.read()
 
     # Pad the plaintext to be a multiple of AES block size
+    # Use PKCS7, a method used to pad input data to a specific block size before encryption
     padder = padding.PKCS7(algorithms.AES.block_size).padder()
     padded_plaintext = padder.update(plaintext) + padder.finalize()
 
     # Generate a random initialization vector
+    # IV is used to ensure that each ciphertext produced with the same key is unique.
     iv = os.urandom(16)
 
     # Create AES cipher object
+    # It creates an AES cipher object with the derived key and IV, then encrypts the padded plaintext using AES in CBC mode.
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
     encryptor = cipher.encryptor()
 

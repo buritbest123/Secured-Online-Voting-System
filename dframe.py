@@ -4,7 +4,7 @@ import hashlib
 from encryption import encrypt_file, decrypt_file  # Importing encryption functions
 
 path = Path("database")
-encryption_key = 'test123'  # Define your encryption key here
+encryption_key = 'jgejHbaCqf64uSnbIxBHsnt1VUfcgxtO'  # Define your encryption key here
 
 def count_reset():
     decrypt_file(path / 'voterList.csv', encryption_key)

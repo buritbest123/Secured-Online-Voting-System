@@ -3,6 +3,7 @@ import socket
 from tkinter import *
 from VotingPage import votingPg
 import hashlib
+import ssl
 
 bgColor = "#FFE6E6"
 fontColor = "#7469B6"
@@ -35,11 +36,14 @@ def log_server(root,frame1,client_socket,voter_ID,password):
     # Construct message to send to the server (voter_ID and hashed_password)
     message = f"{voter_ID} {hashed_password}"
     
+    # Wrap the client socket with SSL/TLS
+    ssl_client_socket = ssl.wrap_socket(client_socket, ssl_version=ssl.PROTOCOL_TLS)
+    
     # Send message to the server
-    client_socket.send(message.encode())
+    ssl_client_socket.send(message.encode())
     
     # Receive authentication response from the server
-    authentication_response = client_socket.recv(1024).decode()
+    authentication_response = ssl_client_socket.recv(1024).decode()
     
     # Determine how to proceed based on the authentication response
     if authentication_response == "Authenticate":

@@ -1,4 +1,4 @@
-import socket
+import socket, ssl
 import threading
 import dframe as df
 from threading import Thread
@@ -7,35 +7,42 @@ from encryption import encrypt_file, decrypt_file
 
 lock = threading.Lock()
 
+import ssl
+
 def client_thread(connection):
-    data = connection.recv(1024)  # receiving voter details
+
+    # Wrap the existing connection with SSL (Secure Sockets Layer) / TLS (Transport Layer Security)
+    ssl_connection = ssl.wrap_socket(connection, server_side=True, certfile="server.crt", keyfile="server.key", ssl_version=ssl.PROTOCOL_TLS)
+    
+    data = ssl_connection.recv(1024)  # receiving voter details
     log = (data.decode()).split(' ')
     log[0] = int(log[0])
     
     if df.verify(log[0], log[1]):  # Authenticate
         if df.isEligible(log[0]):
             print('Voter Logged in... ID:'+str(log[0]))
-            connection.send("Authenticate".encode())
+            ssl_connection.send("Authenticate".encode())
             
-            data = connection.recv(1024)  # Get Vote
+            data = ssl_connection.recv(1024)  # Get Vote
             print("Vote Received from ID: "+str(log[0])+"  Processing...")
             lock.acquire()
             # update Database
             if df.vote_update(data.decode(), log[0]):
                 print("Vote Casted Successfully by voter ID = "+str(log[0]))
-                connection.send("Successful".encode())
+                ssl_connection.send("Successful".encode())
             else:
                 print("Vote Update Failed by voter ID = "+str(log[0]))
-                connection.send("Vote Update Failed".encode())
+                ssl_connection.send("Vote Update Failed".encode())
             lock.release()
         else:
             print('Vote Already Cast by ID:'+str(log[0]))
-            connection.send("VoteCasted".encode())
+            ssl_connection.send("VoteCasted".encode())
     else:
         print('Invalid Voter')
-        connection.send("InvalidVoter".encode())
+        ssl_connection.send("InvalidVoter".encode())
 
-    connection.close()
+    ssl_connection.close()
+
 
 
 def voting_Server():
