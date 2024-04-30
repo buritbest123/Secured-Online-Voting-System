@@ -82,7 +82,7 @@ def voterLogin(root,frame1):
     e3.grid(row = 3,column = 2)
 
     sub = Button(frame1, text="Login", width=10, bg=buttonColor, fg=fontColor, command = lambda: log_server(root, frame1, client_socket, voter_ID.get(), password.get()))
-    Label(frame1, text="").grid(row = 4,column = 0)
+    Label(frame1, text="", bg=bgColor).grid(row = 4,column = 0)
     sub.grid(row = 5, column = 3, columnspan = 2)
 
     frame1.pack()
